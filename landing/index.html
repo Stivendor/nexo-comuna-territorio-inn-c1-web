@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nexo-Comuna conecta a los habitantes de la Comuna 1 - Popular con oportunidades reales de empleo y formación, desde Telegram." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="Nexo-Comuna — Comuna 1 - Popular · Tu oportunidad está en tu barrio" />
+  <meta property="og:description" content="Nexo-Comuna conecta a los habitantes de la Comuna 1 - Popular con oportunidades reales de empleo y formación, desde Telegram." />
+  <meta property="og:url" content="https://nexo-comuna.vercel.app" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Nexo-Comuna — Comuna 1 - Popular · Tu oportunidad está en tu barrio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --black:   #0a0a0a;
+      --gray-90: #141414;
+      --gray-80: #1f1f1f;
+      --gray-70: #2e2e2e;
+      --gray-60: #444;
+      --gray-40: #888;
+      --gray-20: #c8c8c8;
+      --gray-10: #e8e8e8;
+      --white:   #f5f5f5;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 24px;
+
+      --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────────────────── */
+    .display-xl {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .display-lg {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .display-md {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .body-lg  { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--gray-20); }
+    .body-sm  { font-size: 0.9rem; color: var(--gray-40); }
+    .label    { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-40); }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    section { padding: 5rem 0; }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.22s; }
+    .reveal-delay-3 { transition-delay: 0.34s; }
+    .reveal-delay-4 { transition-delay: 0.46s; }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: var(--radius-md);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--gray-10);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,255,255,0.12);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border: 1px solid var(--gray-70);
+      color: var(--gray-20);
+      font-weight: 500;
+      font-size: 1rem;
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition), color var(--transition), transform var(--transition);
+    }
+    .btn-ghost:hover {
+      border-color: var(--gray-40);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ─── DIVIDER ─────────────────────────────────────────────── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--gray-80);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 0;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-80);
+      transition: background var(--transition);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .nav-cta {
+      padding: 0.55rem 1.25rem;
+      background: var(--white);
+      color: var(--black);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-cta:hover { background: var(--gray-10); transform: translateY(-1px); }
+
+    /* ══════════════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════════════ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 6rem;
+      padding-bottom: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid texture */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    /* Fade the grid out at the bottom */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(transparent, var(--black));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    @media (min-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr 1fr; align-items: center; }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--gray-70);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gray-20);
+      margin-bottom: 1.5rem;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gray-20);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero-title { margin-bottom: 1.25rem; }
+    .hero-title em {
+      font-style: normal;
+      position: relative;
+      display: inline-block;
+    }
+    .hero-title em::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 3px;
+      background: var(--gray-60);
+      border-radius: 2px;
+    }
+
+    .hero-sub { margin-bottom: 2.25rem; max-width: 480px; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    /* Camello SVG illustration side */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .camel-wrap {
+      width: min(340px, 90vw);
+      aspect-ratio: 1;
+      border: 1px solid var(--gray-80);
+      border-radius: var(--radius-lg);
+      background: var(--gray-90);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .camel-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    }
+    .camel-svg {
+      width: 78%;
+      opacity: 0.92;
+      animation: camel-float 4s ease-in-out infinite;
+      object-fit: contain;
+    }
+    @keyframes camel-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       PROBLEMA
+    ══════════════════════════════════════════════════════════ */
+    #problema {
+      background: var(--gray-90);
+      border-top: 1px solid var(--gray-80);
+      border-bottom: 1px solid var(--gray-80);
+    }
+    .problema-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 3.5rem;
+    }
+    .problema-header .label { margin-bottom: 0.75rem; }
+    .problema-header p { margin-top: 1rem; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 600px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .stat-card {
+      background: var(--gray-80);
+      border: 1px solid var(--gray-70);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .stat-card:hover {
+      border-color: var(--gray-60);
+      transform: translateY(-3px);
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gray-60);
+    }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .stat-desc {
+      font-size: 0.92rem;
+      color: var(--gray-40);
+      line-height: 1.5;
+    }
+    .stat-source {
+      margin-top: 0.75rem;
+      font-size: 0.72rem;
+      color: var(--gray-60);
+      letter-spacing: 0.04em;
+    }
+    .stat-impact {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-70);
+      font-size: 0.8rem;
+      color: var(--gray-20);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       SOLUCIÓN
+    ══════════════════════════════════════════════════════════ */
+    #solucion { background: var(--black); }
+    .solucion-header { text-align: center; max-width: 640px; margin: 0 auto 4rem; }
+    .solucion-header .label { margin-bottom: 0.75rem; }
+    .solucion-header p { margin-top: 1rem; }
+
+    .capas-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 768px) { .capas-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .capa-card {
+      border: 1px solid var(--gray-80);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.75rem;
+      background: var(--gray-90);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .capa-card:hover { border-color: var(--gray-60); transform: translateY(-4px); }
+    .capa-number { font-family: var(--font-display); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.2em; color: var(--gray-60); margin-bottom: 1.25rem; }
+    .capa-icon {
+      width: 48px; height: 48px; border: 1px solid var(--gray-70); border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem; background: var(--gray-80);
+    }
+    .capa-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+    .capa-desc { font-size: 0.92rem; color: var(--gray-40); line-height: 1.6; }
+    .capa-tag {
+      display: inline-block; margin-top: 1.25rem; padding: 0.3rem 0.75rem;
+      border: 1px solid var(--gray-70); border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; color: var(--gray-40);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       PARA QUIÉN ES
+    ══════════════════════════════════════════════════════════ */
+    #para-quien { background: var(--gray-90); border-top: 1px solid var(--gray-80); border-bottom: 1px solid var(--gray-80); }
+    .para-quien-header { text-align: center; max-width: 580px; margin: 0 auto 3.5rem; }
+    .para-quien-header .label { margin-bottom: 0.75rem; }
+    .para-quien-header p { margin-top: 1rem; }
+
+    .perfiles-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+    @media (min-width: 680px) { .perfiles-grid { grid-template-columns: 1fr 1fr; } }
+
+    .perfil-card {
+      border: 1px solid var(--gray-80); border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem; background: var(--gray-80);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .perfil-card:hover { border-color: var(--gray-60); transform: translateY(-4px); }
+    .perfil-card.featured { background: var(--white); border-color: var(--white); }
+    .perfil-card.featured .perfil-role { color: var(--gray-60); }
+    .perfil-card.featured .perfil-name,
+    .perfil-card.featured .perfil-quote { color: var(--black); }
+    .perfil-card.featured .perfil-list li { color: var(--gray-70); border-color: var(--gray-20); }
+    .perfil-card.featured .perfil-list li::before { background: var(--black); }
+
+    .perfil-avatar {
+      width: 56px; height: 56px; border-radius: 50%; background: var(--gray-70);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; font-size: 1.6rem;
+    }
+    .perfil-card.featured .perfil-avatar { background: var(--gray-20); }
+    .perfil-role { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-40); margin-bottom: 0.4rem; }
+    .perfil-name { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+    .perfil-quote { font-size: 0.95rem; color: var(--gray-40); line-height: 1.6; margin-bottom: 1.5rem; font-style: italic; }
+    .perfil-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .perfil-list li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      font-size: 0.9rem; color: var(--gray-40);
+      padding-bottom: 0.6rem; border-bottom: 1px solid var(--gray-70);
+    }
+    .perfil-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .perfil-list li::before {
+      content: ''; width: 5px; height: 5px; min-width: 5px; border-radius: 50%;
+      background: var(--gray-40); margin-top: 0.45rem;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       CÓMO FUNCIONA
+    ══════════════════════════════════════════════════════════ */
+    #como-funciona { background: var(--black); }
+    .como-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+    .como-header .label { margin-bottom: 0.75rem; }
+    .como-header p { margin-top: 1rem; }
+
+    .pasos-container { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; }
+
+    .paso { display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem; align-items: flex-start; }
+    @media (min-width: 520px) { .paso { grid-template-columns: 72px 1fr; gap: 2rem; } }
+
+    .paso-left { display: flex; flex-direction: column; align-items: center; }
+    .paso-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 1px solid var(--gray-70); background: var(--gray-90);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--white);
+      flex-shrink: 0; position: relative; z-index: 1;
+      transition: background var(--transition), border-color var(--transition), color var(--transition);
+    }
+    .paso:hover .paso-num { background: var(--white); color: var(--black); border-color: var(--white); }
+    .paso-line { flex: 1; width: 1px; background: var(--gray-80); min-height: 3rem; margin: 0.5rem 0; }
+    .paso:last-child .paso-line { display: none; }
+
+    .paso-content { padding: 0.25rem 0 2.5rem; }
+    .paso:last-child .paso-content { padding-bottom: 0; }
+
+    .paso-tag {
+      display: inline-block; padding: 0.25rem 0.6rem;
+      background: var(--gray-80); border: 1px solid var(--gray-70); border-radius: var(--radius-sm);
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; color: var(--gray-40); margin-bottom: 0.6rem;
+    }
+    .paso-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .paso-desc { font-size: 0.92rem; color: var(--gray-40); line-height: 1.65; max-width: 520px; }
+
+    .tg-bubble {
+      display: inline-block; background: var(--gray-80); border: 1px solid var(--gray-70);
+      border-radius: 0 var(--radius-md) var(--radius-md) var(--radius-md);
+      padding: 0.6rem 1rem; font-size: 0.85rem; color: var(--gray-20);
+      margin-top: 0.75rem; max-width: 320px; line-height: 1.5;
+    }
+    .tg-bubble-out {
+      background: var(--gray-70); border-radius: var(--radius-md) 0 var(--radius-md) var(--radius-md); color: var(--white);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       CTA FINAL
+    ══════════════════════════════════════════════════════════ */
+    #cta-final {
+      background: var(--white);
+      color: var(--black);
+      text-align: center;
+      border-top: 1px solid var(--gray-10);
+    }
+    #cta-final .label { color: var(--gray-60); margin-bottom: 0.75rem; }
+    #cta-final .display-lg { color: var(--black); }
+    #cta-final .body-lg { color: var(--gray-60); margin-top: 1rem; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+    .cta-final-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2.25rem;
+      background: var(--black); color: var(--white);
+      font-weight: 600; font-size: 1rem;
+      border-radius: var(--radius-md);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-dark:hover { background: var(--gray-90); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+
+    .btn-tg {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 1rem 2.25rem;
+      background: transparent; color: var(--black);
+      border: 1.5px solid var(--gray-70);
+      font-weight: 600; font-size: 1rem;
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .btn-tg:hover { border-color: var(--black); transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════════════════════
+       MODAL
+    ══════════════════════════════════════════════════════════ */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+      padding: 1.25rem;
+    }
+    .modal-overlay.open { display: flex; animation: fade-in 0.25s ease; }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal {
+      background: var(--gray-90);
+      border: 1px solid var(--gray-70);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      width: 100%; max-width: 480px;
+      position: relative;
+      animation: slide-up 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes slide-up { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: none; } }
+
+    .modal-close {
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--gray-70); background: var(--gray-80);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-40); cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+    .modal-close:hover { background: var(--gray-70); color: var(--white); }
+
+    .modal-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+    .modal-sub { font-size: 0.9rem; color: var(--gray-40); margin-bottom: 2rem; }
+
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-20); margin-bottom: 0.5rem; letter-spacing: 0.04em; }
+    .form-input {
+      width: 100%; padding: 0.8rem 1rem;
+      background: var(--gray-80); border: 1px solid var(--gray-70);
+      border-radius: var(--radius-sm); color: var(--white);
+      font-family: var(--font-body); font-size: 0.95rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+    }
+    .form-input::placeholder { color: var(--gray-60); }
+    .form-input:focus { border-color: var(--gray-40); box-shadow: 0 0 0 3px rgba(255,255,255,0.06); }
+    .form-input.error { border-color: #888; }
+
+    .form-select {
+      width: 100%; padding: 0.8rem 2.5rem 0.8rem 1rem;
+      background: var(--gray-80) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 1rem center;
+      -webkit-appearance: none; appearance: none;
+      border: 1px solid var(--gray-70); border-radius: var(--radius-sm);
+      color: var(--white); font-family: var(--font-body); font-size: 0.95rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none; cursor: pointer;
+    }
+    .form-select option { background: var(--gray-80); color: var(--white); }
+    .form-select.placeholder-selected { color: var(--gray-60); }
+    .form-select:focus { border-color: var(--gray-40); box-shadow: 0 0 0 3px rgba(255,255,255,0.06); }
+    .form-select.error { border-color: #888; }
+
+    .form-error { font-size: 0.78rem; color: var(--gray-40); margin-top: 0.35rem; display: none; }
+    .form-error.show { display: block; }
+
+    .form-submit {
+      width: 100%; padding: 0.9rem;
+      background: var(--white); color: var(--black);
+      font-family: var(--font-body); font-size: 1rem; font-weight: 600;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), transform var(--transition);
+      cursor: pointer; border: none; margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--gray-10); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .modal-success {
+      text-align: center; display: none; padding: 1rem 0;
+    }
+    .modal-success.show { display: block; }
+    .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .success-title { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+    .success-msg { font-size: 0.92rem; color: var(--gray-40); }
+
+    /* ══════════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════════ */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--gray-80);
+      padding: 3rem 0 2rem;
+    }
+    .footer-inner {
+      display: flex; flex-direction: column; gap: 2rem;
+    }
+    @media (min-width: 640px) {
+      .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+    }
+
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+    .footer-logo-text { font-family: var(--font-display); font-size: 1rem; font-weight: 800; letter-spacing: -0.02em; color: var(--white); }
+    .footer-tagline { font-size: 0.82rem; color: var(--gray-40); max-width: 240px; line-height: 1.5; }
+
+    .footer-links { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-link-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-60); margin-bottom: 0.25rem; }
+    .footer-link {
+      font-size: 0.88rem; color: var(--gray-40);
+      transition: color var(--transition);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .footer-link:hover { color: var(--white); }
+
+    .footer-bottom {
+      margin-top: 3rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--gray-80);
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 0.78rem; color: var(--gray-60); }
+    .footer-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--gray-70); border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; color: var(--gray-40);
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Nexo-Comuna inicio">
+      <!-- Camel icon mini -->
+      <img src="camello.svg" width="28" height="28" alt="" aria-hidden="true" style="filter: invert(1) brightness(0.96);" />
+      <span class="nav-logo-text">Nexo-Comuna</span>
+    </a>
+    <button class="nav-cta" id="nav-cta-btn" onclick="openModal()" aria-haspopup="dialog">
+      Quiero acceder
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Copy -->
+      <div class="hero-copy">
+        <div class="hero-badge reveal">
+          <span class="badge-dot"></span>
+          Comuna 1 - Popular · Únete a la lista de espera
+        </div>
+
+        <h1 class="display-xl hero-title reveal reveal-delay-1">
+          Tu oportunidad<br>está en <em>tu barrio</em>
+        </h1>
+
+        <p class="body-lg hero-sub reveal reveal-delay-2">
+          Nexo-Comuna lleva el empleo formal, formación del ITM y servicios
+          locales a los barrios de la <strong>Comuna 1 - Popular</strong> —
+          todo desde Telegram, sin salir del celular.
+        </p>
+
+        <div class="hero-actions reveal reveal-delay-3">
+          <button class="btn-primary" id="hero-cta-btn" onclick="openModal()" aria-haspopup="dialog">
+            Quiero acceder
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <a href="#como-funciona" class="btn-ghost">
+            Cómo funciona
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="hero-visual reveal reveal-delay-2">
+        <div class="camel-wrap">
+          <!-- Camello SVG inline — estilo lineal minimalista -->
+          <img class="camel-svg" src="camello.svg" alt="Camell0bot logo" style="filter: invert(1) brightness(0.96);" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     PROBLEMA
+══════════════════════════════════════ -->
+<section id="problema">
+  <div class="container">
+
+    <div class="problema-header">
+      <p class="label reveal">El problema</p>
+      <h2 class="display-lg reveal reveal-delay-1">
+        Las oportunidades existen.<br>Pero no llegan.
+      </h2>
+      <p class="body-lg reveal reveal-delay-2">
+          En la Comuna 1 - Popular hay gente con ganas de trabajar y aprender.
+        El problema no es la falta de oportunidades — es la falta de conexión.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-number">63%</div>
+        <p class="stat-desc">
+          de los jóvenes de la Comuna 1 - Popular consiguieron su último empleo por
+          voz a voz, sin acceso a plataformas formales de empleo.
+        </p>
+        <p class="stat-source">Datos estimados · Medellín Cómo Vamos 2023</p>
+        <p class="stat-impact">“Necesitamos digitalizar el rumor del barrio.”</p>
+      </div>
+
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-number">38%</div>
+        <p class="stat-desc">
+          de desempleo juvenil en la Comuna 1 - Popular, mientras cientos
+          de cupos en educación técnica del ITM y Pascual Bravo quedan sin cubrir
+          cada año por falta de información oportuna en el territorio.
+        </p>
+        <p class="stat-source">Datos estimados · Medellín Cómo Vamos / ITM 2023</p>
+        <p class="stat-impact">“Necesitamos un puente de información real.”</p>
+      </div>
+
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-number">9 de 10</div>
+        <p class="stat-desc">
+          habitantes de la Comuna 1 - Popular accede a internet
+          únicamente desde su celular, priorizando apps de mensajería
+          como Telegram y WhatsApp sobre cualquier otra plataforma.
+        </p>
+        <p class="stat-source">Datos estimados · DANE ECV 2022 · estratos 1–2–3</p>
+        <p class="stat-impact">“El bot es la única herramienta accesible las 24/7.”</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SOLUCIÓN
+══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<section id="solucion">
+  <div class="container">
+    <div class="solucion-header">
+      <p class="label reveal">La solución</p>
+      <h2 class="display-lg reveal reveal-delay-1">Un ecosistema que vive<br>donde vive la gente</h2>
+      <p class="body-lg reveal reveal-delay-2">
+        Tres capas conectadas para que ninguna oportunidad se pierda por falta de información.
+      </p>
+    </div>
+
+    <div class="capas-grid">
+      <div class="capa-card reveal reveal-delay-1">
+        <p class="capa-number">01 / ACCESO</p>
+        <div class="capa-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <h3 class="capa-title">Camell0bot</h3>
+        <p class="capa-desc">
+          Un bot en Telegram que cualquier persona de la Comuna 1 - Popular
+          puede usar desde su celular. Busca empleo, encuentra programas del ITM
+          y conoce servicios cerca a tu barrio — sin descargar nada,
+          sin registrarse en ninguna plataforma.
+        </p>
+        <span class="capa-tag">TELEGRAM · BOT</span>
+      </div>
+
+      <div class="capa-card reveal reveal-delay-2">
+        <p class="capa-number">02 / DATOS</p>
+        <div class="capa-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <path d="M14 17.5h7M17.5 14v7"/>
+          </svg>
+        </div>
+        <h3 class="capa-title">Admin Dashboard</h3>
+        <p class="capa-desc">
+          Un panel de análisis para líderes comunitarios, JAC y entidades sociales
+          de la Comuna 1 - Popular. Visualiza qué está buscando tu barrio, qué
+          oportunidades existen y dónde hay mayor necesidad — en tiempo real.
+        </p>
+        <span class="capa-tag">WEB · ANÁLISIS</span>
+      </div>
+
+      <div class="capa-card reveal reveal-delay-3">
+        <p class="capa-number">03 / IMPACTO</p>
+        <div class="capa-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f5f5f5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3 class="capa-title">Red Comunitaria</h3>
+        <p class="capa-desc">
+          Alianzas con empresas, instituciones educativas y organizaciones sociales
+          para garantizar que las oportunidades publicadas sean reales, verificadas
+          y accesibles para los habitantes de la Comuna 1 - Popular.
+        </p>
+        <span class="capa-tag">ALIANZAS · RED</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PARA QUIÉN ES
+══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<section id="para-quien">
+  <div class="container">
+    <div class="para-quien-header">
+      <p class="label reveal">¿Para quién es?</p>
+      <h2 class="display-lg reveal reveal-delay-1">Hecho para los<br>barrios de la C1</h2>
+      <p class="body-lg reveal reveal-delay-2">
+        Cada persona en la Comuna 1 - Popular tiene un papel. Nexo-Comuna le habla a los dos.
+      </p>
+    </div>
+
+    <div class="perfiles-grid">
+      <div class="perfil-card reveal reveal-delay-1">
+        <div class="perfil-avatar" aria-hidden="true">🏘️</div>
+        <p class="perfil-role">PERFIL 1</p>
+        <h3 class="perfil-name">El habitante de la Comuna 1</h3>
+        <p class="perfil-quote">
+          "Soy de Santo Domingo Savio, tengo ganas de trabajar
+          pero no sé por dónde empezar y no tengo plata para un computador."
+        </p>
+        <ul class="perfil-list">
+          <li>Busca empleo desde el celular en minutos</li>
+          <li>Descubre programas del <strong>ITM</strong> y Pascual Bravo cerca de Carpinelo</li>
+          <li>Accede sin datos extra: funciona en Telegram</li>
+          <li>Recibe su hoja de vida generada automáticamente con IA</li>
+        </ul>
+      </div>
+
+      <div class="perfil-card featured reveal reveal-delay-2">
+        <div class="perfil-avatar" aria-hidden="true">📊</div>
+        <p class="perfil-role">PERFIL 2</p>
+        <h3 class="perfil-name">El líder comunitario de la C1</h3>
+        <p class="perfil-quote">
+          "Necesito entender qué está pasando en Popular y Granizal
+          para gestionar mejor los recursos y alianzas."
+        </p>
+        <ul class="perfil-list">
+          <li>Panel con datos reales de los 11 barrios de la C1 en tiempo real</li>
+          <li>Identifica qué oportunidades están fallando en el territorio</li>
+          <li>Toma decisiones basadas en evidencia, no intuición</li>
+          <li>Conecta con empresas y entidades aliadas para la C1</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CÓMO FUNCIONA
+══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<section id="como-funciona">
+  <div class="container">
+    <div class="como-header">
+      <p class="label reveal">Cómo funciona</p>
+      <h2 class="display-lg reveal reveal-delay-1">Tan fácil como<br>mandar un mensaje</h2>
+      <p class="body-lg reveal reveal-delay-2">
+        No necesitas crear una cuenta, ni descargar una app, ni saber de tecnología.
+        Solo tener Telegram.
+      </p>
+    </div>
+
+    <div class="pasos-container">
+
+      <div class="paso reveal">
+        <div class="paso-left">
+          <div class="paso-num">1</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <span class="paso-tag">TELEGRAM</span>
+          <h3 class="paso-title">Abre Camell0bot en Telegram</h3>
+          <p class="paso-desc">
+            Busca <strong style="color:var(--gray-20)">@Camello_c1_bot</strong> en Telegram o usa el enlace
+            que te compartimos. No necesitas registrarte ni dar ningún dato personal.
+          </p>
+          <div class="tg-bubble tg-bubble-out">
+            ¡Hola! Soy Camell0bot 🐪<br>¿Qué necesitás hoy?
+          </div>
+        </div>
+      </div>
+
+      <div class="paso reveal reveal-delay-1">
+        <div class="paso-left">
+          <div class="paso-num">2</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <span class="paso-tag">ELIGE</span>
+          <h3 class="paso-title">Dile qué estás buscando</h3>
+          <p class="paso-desc">
+            Empleo, formación o servicios locales. El bot te hace preguntas simples
+            para entender tu perfil y mostrarte solo lo que te sirve, en tu zona.
+          </p>
+          <div class="tg-bubble">Quiero buscar empleo 💼</div>
+        </div>
+      </div>
+
+      <div class="paso reveal reveal-delay-2">
+        <div class="paso-left">
+          <div class="paso-num">3</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <span class="paso-tag">RESULTADOS</span>
+          <h3 class="paso-title">Recibe oportunidades reales</h3>
+          <p class="paso-desc">
+            El bot te muestra vacantes verificadas cerca a tu barrio, cursos gratuitos
+            con cupo disponible y contactos directos — sin intermediarios.
+          </p>
+          <div class="tg-bubble tg-bubble-out">
+            Encontré 4 vacantes en tu zona 🎯<br>Aquí van los detalles:
+          </div>
+        </div>
+      </div>
+
+      <div class="paso reveal reveal-delay-3">
+        <div class="paso-left">
+          <div class="paso-num">4</div>
+          <div class="paso-line"></div>
+        </div>
+        <div class="paso-content">
+          <span class="paso-tag">PLUS · IA</span>
+          <h3 class="paso-title">Genera tu hoja de vida con inteligencia artificial</h3>
+          <p class="paso-desc">
+            Cuéntale al bot tu experiencia y habilidades. Él lo convierte en una hoja de vida
+            profesional en PDF, listo para enviar, sin costo.
+          </p>
+          <div class="tg-bubble">¡Tu hoja de vida está lista! 📄<br>Descárgala aquí 👇</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA FINAL
+══════════════════════════════════════ -->
+<div class="divider"></div>
+
+<section id="cta-final">
+  <div class="container">
+    <p class="label reveal">¿Vives en la Comuna 1?</p>
+    <h2 class="display-lg reveal reveal-delay-1">
+      Tu próximo trabajo<br>empieza con un mensaje
+    </h2>
+    <p class="body-lg reveal reveal-delay-2">
+      Únete a la lista de espera y sé de los primeros en acceder
+      cuando Nexo-Comuna llegue a los barrios de la Comuna 1 - Popular.
+    </p>
+    <div class="cta-final-actions reveal reveal-delay-3">
+      <button class="btn-dark" id="cta-final-btn" onclick="openModal()" aria-haspopup="dialog">
+        Quiero estar en la lista
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <a href="https://t.me/Camello_c1_bot" target="_blank" rel="noopener" class="btn-tg" id="cta-tg-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+        Abrir en Telegram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="camello.svg" width="28" height="28" alt="" aria-hidden="true" style="filter: invert(1) brightness(0.96);" />
+          <span class="footer-logo-text">Nexo-Comuna</span>
+        </div>
+        <p class="footer-tagline">Conectando la Comuna 1 - Popular con oportunidades reales, desde Telegram.</p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <p class="footer-link-label">Redes</p>
+        <div class="footer-links">
+          <a href="#" class="footer-link" id="footer-instagram" aria-label="Instagram de Nexo-Comuna">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="https://t.me/Camello_c1_bot" target="_blank" rel="noopener" class="footer-link" id="footer-telegram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            Telegram
+          </a>
+          <a href="#" class="footer-link" id="footer-linkedin" aria-label="LinkedIn de Nexo-Comuna">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- Contacto -->
+      <div>
+        <p class="footer-link-label">Proyecto</p>
+        <div class="footer-links">
+          <a href="#hero" class="footer-link">Inicio</a>
+          <a href="#solucion" class="footer-link">Solución</a>
+          <a href="#como-funciona" class="footer-link">Cómo funciona</a>
+          <button class="footer-link" onclick="openModal()" id="footer-cta-btn" style="background:none;border:none;cursor:pointer;padding:0;font-family:inherit;">
+            Unirme a la lista
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Nexo-Comuna · Comuna 1 - Popular, Medellín, Colombia</p>
+      <span class="footer-badge">
+        🏆 Participante de Territorio Inn
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     MODAL — Lista de espera
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close-btn" onclick="closeModal()" aria-label="Cerrar modal">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <!-- Formulario -->
+    <div id="modal-form-wrap">
+      <h2 class="modal-title" id="modal-title">¿Vives en la C1? 🐪</h2>
+      <p class="modal-sub">Déjanos tus datos y te avisamos cuando Nexo-Comuna llegue a tu barrio de la Comuna 1 - Popular.</p>
+
+      <form id="waitlist-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="field-nombre">Tu nombre</label>
+          <input class="form-input" id="field-nombre" type="text" placeholder="Ej: Andrés García" autocomplete="given-name" />
+          <p class="form-error" id="error-nombre">Por favor escribe tu nombre.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="field-barrio">Tu barrio en la Comuna 1</label>
+          <select class="form-select placeholder-selected" id="field-barrio">
+            <option value="" disabled selected>Selecciona tu barrio...</option>
+            <optgroup label="Comuna 1 - Popular">
+              <option value="Santo Domingo Savio No. 1">Santo Domingo Savio No. 1</option>
+              <option value="Santo Domingo Savio No. 2">Santo Domingo Savio No. 2</option>
+              <option value="Popular No. 1">Popular No. 1</option>
+              <option value="Popular No. 2">Popular No. 2</option>
+              <option value="Granizal">Granizal</option>
+              <option value="Moscú No. 2">Moscú No. 2</option>
+              <option value="Villa Guadalupe">Villa Guadalupe</option>
+              <option value="San Pablo">San Pablo</option>
+              <option value="El Compromiso">El Compromiso</option>
+              <option value="La Avanzada">La Avanzada</option>
+              <option value="Carpinelo">Carpinelo</option>
+            </optgroup>
+          </select>
+          <p class="form-error" id="error-barrio">Por favor selecciona tu barrio.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="field-telefono">Tu número de WhatsApp / Teléfono</label>
+          <input class="form-input" id="field-telefono" type="tel" placeholder="Ej: 3101234567" autocomplete="tel" inputmode="numeric" maxlength="10" />
+          <p class="form-error" id="error-telefono">Ingresa un número celular colombiano válido (10 dígitos, empieza por 3).</p>
+        </div>
+
+        <button class="form-submit" id="form-submit-btn" type="submit">
+          Apuntarme a la lista
+        </button>
+      </form>
+    </div>
+
+    <!-- Estado éxito -->
+    <div class="modal-success" id="modal-success">
+      <div class="success-icon">🎉</div>
+      <h3 class="success-title">¡Ya estás en la lista!</h3>
+      <p class="success-msg">
+        Te avisamos por Telegram en cuanto Nexo-Comuna llegue a tu barrio de la Comuna 1 - Popular.<br>
+        ¡Gracias por confiar en nosotros!
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Scroll Reveal ───────────────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Trigger hero elements immediately (already visible on load)
+  document.querySelectorAll('#hero .reveal').forEach(el => el.classList.add('visible'));
+
+  // ── Supabase config ─────────────────────────────────────────
+  const SUPABASE_URL     = 'https://inrrvavabklhihyoeads.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_r2a7ifeo9JRtLafeYpSjIg_JJJJc-tA';
+
+  async function guardarEnWaitlist(nombre, barrio, telefono) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ nombre, barrio, telefono })
+    });
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(err || 'Error al guardar en la base de datos');
+    }
+  }
+
+  // ── Modal ───────────────────────────────────────────────────
+  const overlay   = document.getElementById('modal-overlay');
+  const form      = document.getElementById('waitlist-form');
+  const formWrap  = document.getElementById('modal-form-wrap');
+  const success   = document.getElementById('modal-success');
+
+  function openModal() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Reset state
+    form.reset();
+    formWrap.style.display = 'block';
+    success.classList.remove('show');
+    clearErrors();
+    setTimeout(() => document.getElementById('field-nombre').focus(), 100);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close on overlay click (outside modal box)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  // Quitar estilo placeholder del select cuando se elige una opción
+  document.getElementById('field-barrio').addEventListener('change', function() {
+    this.classList.remove('placeholder-selected', 'error');
+    document.getElementById('error-barrio').classList.remove('show');
+  });
+
+  // ── Form Validation ─────────────────────────────────────────
+  function clearErrors() {
+    document.querySelectorAll('.form-error').forEach(el => el.classList.remove('show'));
+    document.querySelectorAll('.form-input').forEach(el => el.classList.remove('error'));
+  }
+
+  function showError(fieldId, errorId) {
+    document.getElementById(fieldId).classList.add('error');
+    document.getElementById(errorId).classList.add('show');
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    const nombre   = document.getElementById('field-nombre').value.trim();
+    const barrio   = document.getElementById('field-barrio').value.trim();
+    const telefono = document.getElementById('field-telefono').value.trim().replace(/\s/g, '');
+    let valid = true;
+
+    if (!nombre)  { showError('field-nombre',   'error-nombre');   valid = false; }
+    if (!barrio)  { document.getElementById('field-barrio').classList.add('error'); document.getElementById('error-barrio').classList.add('show'); valid = false; }
+    if (!/^3\d{9}$/.test(telefono)) {
+      showError('field-telefono', 'error-telefono'); valid = false;
+    }
+
+    if (!valid) return;
+
+    const btn = document.getElementById('form-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Guardando...';
+
+    try {
+      await guardarEnWaitlist(nombre, barrio, telefono);
+      formWrap.style.display = 'none';
+      success.classList.add('show');
+    } catch (err) {
+      console.error('Waitlist error:', err);
+      btn.textContent = 'Ocurrió un error. Intenta de nuevo.';
+    } finally {
+      btn.disabled = false;
+      if (btn.textContent === 'Guardando...') btn.textContent = 'Apuntarme a la lista';
+    }
+  });
+</script>
+
+</body>
+</html>
