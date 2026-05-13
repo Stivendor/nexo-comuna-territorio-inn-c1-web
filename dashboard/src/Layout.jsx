@@ -1,8 +1,9 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { supabase } from './supabaseClient'
 import { useTheme } from './ThemeContext'
 import {
-  LayoutDashboard, Users, FileText, BookOpen, MapPin, BarChart3, Settings, LogOut, Moon, Sun
+  LayoutDashboard, Users, FileText, BookOpen, MapPin, BarChart3, Settings, LogOut, Moon, Sun, Menu, X
 } from 'lucide-react'
 
 const navItems = [
@@ -17,16 +18,43 @@ const navItems = [
 
 export default function Layout() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { dark, toggleTheme } = useTheme()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [location.pathname])
 
   async function handleLogout() {
     await supabase.auth.signOut()
     navigate('/login')
   }
 
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen)
+
   return (
     <div className="layout">
-      <aside className="sidebar">
+      {/* Mobile Header (Top Bar) */}
+      <div className="mobile-header">
+        <div className="sidebar-brand">
+          <span className="brand-icon">🐪</span>
+          <div>
+            <span className="brand-name">CamelloBot</span>
+          </div>
+        </div>
+        <button className="btn-icon" onClick={toggleMobileMenu} style={{ border: 'none', background: 'transparent' }}>
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)}></div>
+      )}
+
+      <aside className={`sidebar ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-brand">
             <span className="brand-icon">🐪</span>

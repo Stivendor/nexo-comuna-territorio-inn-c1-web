@@ -12,12 +12,10 @@ export function useStats() {
         const [usuarios, cvs, educativas, laborales] = await Promise.all([
           supabase
             .from('usuarios')
-            .select('*', { count: 'exact', head: true })
-            .ilike('comuna', '%popular%'),
+            .select('*', { count: 'exact', head: true }),
           supabase
             .from('cvs_generados')
-            .select('*', { count: 'exact', head: true })
-            .ilike('comuna', '%popular%'),
+            .select('*', { count: 'exact', head: true }),
           supabase
             .from('oferta_educativa')
             .select('*', { count: 'exact', head: true }),

@@ -13,7 +13,6 @@ export function useWaitlist() {
         const { data, count, error: err } = await supabase
           .from('usuarios')
           .select('*', { count: 'exact' })
-          .ilike('comuna', '%popular%')
           .order('created_at', { ascending: false })
 
         if (err) throw err

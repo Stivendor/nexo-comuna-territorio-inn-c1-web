@@ -12,7 +12,6 @@ export function useCVs() {
         const { data, error: err } = await supabase
           .from('cvs_generados')
           .select('*')
-          .ilike('comuna', '%popular%')
           .order('created_at', { ascending: false })
 
         if (err) throw err

@@ -240,6 +240,23 @@ img { max-width: 100%; display: block; }
   100% { background-position: 200% 0; }
 }
 
+.skeleton {
+  background: linear-gradient(90deg, var(--gray-80) 25%, var(--gray-70) 50%, var(--gray-80) 75%);
+  background-size: 200% 100%;
+  animation: skeleton 1.5s infinite linear;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 1rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-text:last-child {
+  margin-bottom: 0;
+}
+
 .reveal {
   animation: reveal 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
 }
@@ -991,20 +1008,54 @@ img { max-width: 100%; display: block; }
   .mini-map { height: 220px; }
 }
 
+.mobile-header {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-80);
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    width: 100%;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
   .sidebar {
-    width: 60px;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 280px;
+    height: 100vh;
+    z-index: 100;
+    transition: left var(--transition);
   }
 
-  .sidebar-brand .brand-name,
-  .sidebar-brand .brand-sub,
-  .nav-item span {
-    display: none;
+  .sidebar.open {
+    left: 0;
   }
 
-  .nav-item {
-    justify-content: center;
-    padding: 0.65rem;
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 90;
   }
 
   .main-content {
